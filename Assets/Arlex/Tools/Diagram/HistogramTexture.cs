@@ -131,7 +131,7 @@ public class HistogramTexture : MonoBehaviour {
 		} else {
 			material.SetTexture ("_MainTex", m_generatedTexture);
 		}
-		if (maxScore > 0.6 && value < 0.1 && judge) {
+		if (maxScore > 0.2 && value < 0.1 && judge) {
 			GameObject.Find ("Canvas").GetComponent<CanvasController> ().JudgeFinish (maxScore);
 			judge = false;
 		}

@@ -9,7 +9,6 @@ using System;
 // For Helios Interactive - http://heliosinteractive.com 
 public class GestureSourceManager : MonoBehaviour { 
 	public BodySourceManager _BodySource;
-	public MineBodySourceView BodyView;
 	public string databasePath; 
 	private KinectSensor _Sensor; 
 	private VisualGestureBuilderFrameSource _Source; 
@@ -66,46 +65,16 @@ public class GestureSourceManager : MonoBehaviour {
 			_Reader.IsPaused = true; 
 		}
 	} 
-	// Update Loop, set body if we need one 
-	void Update() {
-			//judge whether there is a valid body or not
-		/*	string _bodyid ="";PlayerPrefs.GetString("BodyId");
-			if (_bodyid == null || _bodyid.Equals("")) {// system paused and chose the stable body
-				FindValidBody ();
-			} else{
-				ulong bodyid =Convert.ToUInt64(_bodyid);
-			//	if (_Source.TrackingId != bodyid) {
-			//		Debug.Log ("detect id is "+bodyid);
-			//		_Source.TrackingId = bodyid;
-			//	} 
-			}*/
-
-		if (!_Source.IsTrackingIdValid) {
-				FindValidBody ();
-			}
-	} 
-	// Check Body Manager, grab first valid body 
-	void FindValidBody() { 
-		/*if (_BodySource != null) { 
-			Body[] bodies = _BodySource.GetData();
-			if (bodies != null) { 
-				foreach (Body body in bodies) {
-					if (body.IsTracked) { 
-						SetBody(body.TrackingId); 
-						break; 
-					} 
-				}
-			} 
-		}*/
-		if (!confirm) {
-			ulong body_id = BodyView.GetValidBody ();
-			SetBody (body_id);
-		}
-	} 
 
 	public void confirmBody(ulong bodyid){
 		confirm = true;
 		SetBody (bodyid);
+	}
+	//get the nearest body id as detect body
+	public void UpdatebodyId(ulong bodyid){
+		if (!confirm) {
+			SetBody (bodyid);
+		}
 	}
 	/// Handles gesture detection results arriving from the sensor for the associated body tracking Id 
 	private void GestureFrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs e) { 
@@ -119,9 +88,9 @@ public class GestureSourceManager : MonoBehaviour {
 						if (gesture.GestureType == GestureType.Discrete) { 
 							DiscreteGestureResult result = null; 
 							discreteResults.TryGetValue(gesture, out result); 
-							//	if (gesture.Name == "walk") {
-							//		GameObject.Find ("CreateDiagram").GetComponent<HistogramTexture> ().setHeight (result.Confidence);
-							//	}
+						//	if (gesture.Name == "recognize") {
+						//			Debug.Log ("Detected Gesture " + gesture.Name + " with Confidence " + result.Confidence);
+						//		}
 								// Fire Event 
 //						Debug.Log ("Detected Gesture " + gesture.Name + " with Confidence " + result.Confidence);
 							if (OnGesture != null) {

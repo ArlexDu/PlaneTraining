@@ -15,6 +15,8 @@ public class MineBodySourceView : MonoBehaviour
 	public Transform BodyPosition;
 	private CameraSpacePoint[] camerapoints = new CameraSpacePoint[2];
 	private ulong nearest_body = 0;
+	private ulong last_nearest_body = 0;
+	private GestureSourceManager manager;
     private Dictionary<Kinect.JointType, Kinect.JointType> _BoneMap = new Dictionary<Kinect.JointType, Kinect.JointType>()
     {
         { Kinect.JointType.FootLeft, Kinect.JointType.AnkleLeft },
@@ -57,6 +59,7 @@ public class MineBodySourceView : MonoBehaviour
 		neck.Y = 0;
 		neck.Z = 0;
 		camerapoints [1] = neck;
+		manager = GestureSourceManager.Instance;
 	}
 
     void Update () 
@@ -117,7 +120,10 @@ public class MineBodySourceView : MonoBehaviour
 				}
 			}
 		}
-
+		if (nearest_body!=0 && last_nearest_body != nearest_body) {
+			last_nearest_body = nearest_body;
+			manager.UpdatebodyId (nearest_body);
+		}
 
         foreach(var body in data)
         {
@@ -222,8 +228,5 @@ public class MineBodySourceView : MonoBehaviour
 
 	public CameraSpacePoint[] getCameraPoints(){
 		return camerapoints;
-	}
-	public ulong GetValidBody(){
-		return nearest_body;
 	}
 }

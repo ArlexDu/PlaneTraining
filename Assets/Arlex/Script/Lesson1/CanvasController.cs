@@ -64,19 +64,25 @@ public class CanvasController : MonoBehaviour {
 
 	public void CanvasShow(){
 		if (showmovie) {// show video UI
+			conclusion.SetActive(false);
+			judgeData.SetActive (false);
+			videoShow.SetActive (true);
 			switch (level) {
 			case 1:
+				ReSetCanvas ();
 				GameObject.Find ("Title").GetComponent<Text> ().text = "应急门指示教学";
 				GameObject.Find ("VideoShow").GetComponent<RawImage> ().texture = movies [0];
 				GameObject.Find ("VideoShow").GetComponent<AudioSource> ().clip = clips [0];
 				break;
 			case 2:
+				ReSetCanvas ();
 				GameObject.Find ("Title").GetComponent<Text> ().text = "氧气面罩使用教学";
 				GameObject.Find("VideoShow").GetComponent<RawImage>().texture = movies[1];
 				GameObject.Find ("VideoShow").GetComponent<AudioSource> ().clip = clips [1];
 				break;
 			}
 		} else {//show evaluate UI
+			conclusion.SetActive(false);
 			videoShow.SetActive (false);
 			judgeData.SetActive (true);
 			switch (level) {
@@ -85,7 +91,6 @@ public class CanvasController : MonoBehaviour {
 				controller.LoadPointer();	
 				break;
 			case 2:
-				ReSetCanvas ();
 				GameObject.Find ("Title").GetComponent<Text> ().text = "氧气面罩的使用方法P1";
 				controller.LoadHelmetP1();
 				break;
@@ -141,9 +146,6 @@ public class CanvasController : MonoBehaviour {
 			PrepareConclusion ();
 			StartCoroutine ("Show");
 		} else if(level == 0) {//back to original
-			conclusion.SetActive(false);
-			judgeData.SetActive (false);
-			videoShow.SetActive (true);
 			showmovie = true;
 			GameObject.Find ("Player").GetComponent<PlayerController>().StartTraning();
 		}

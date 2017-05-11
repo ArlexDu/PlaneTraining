@@ -460,6 +460,7 @@ namespace UnityEngine.EventSystems
         /// </summary>
         public override void Process()
         {
+			//Debug.Log ("process");
             bool usedEvent = SendUpdateEventToSelectedObject();
 
             if (eventSystem.sendNavigationEvents)
@@ -620,7 +621,7 @@ namespace UnityEngine.EventSystems
                 // space position for the camera attached to this raycaster for compatability
                 leftData.position = ovrRaycaster.GetScreenPosition(raycast);
                 
-
+		//		Debug.Log ("overaycaster");
                 // Find the world position and normal the Graphic the ray intersected
                 RectTransform graphicRect = raycast.gameObject.GetComponent<RectTransform>();
                 if (graphicRect != null)
@@ -636,6 +637,7 @@ namespace UnityEngine.EventSystems
             OVRPhysicsRaycaster physicsRaycaster = raycast.module as OVRPhysicsRaycaster;
             if (physicsRaycaster)
             {
+		//		Debug.Log ("physics overaycaster");
                 leftData.position = physicsRaycaster.GetScreenPos(raycast.worldPosition);
                 OVRGazePointer.instance.RequestShow();
                 OVRGazePointer.instance.SetPosition(raycast.worldPosition, raycast.worldNormal);

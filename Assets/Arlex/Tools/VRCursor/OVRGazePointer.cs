@@ -150,7 +150,6 @@ public class OVRGazePointer : MonoBehaviour {
        
        if (visibilityStrength == 0 && !hidden)
         {
-//			Debug.LogError ("Pointer Hide!");
             Hide();
         }
         else if (visibilityStrength > 0 && hidden)
@@ -228,6 +227,7 @@ public class OVRGazePointer : MonoBehaviour {
     /// </summary>
     public void RequestShow()
     {
+//		Debug.Log ("Show");
         Show();
         lastShowRequestTime = Time.time;
     }
