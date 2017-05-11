@@ -1,0 +1,284 @@
+fileFormatVersion: 2
+guid: 1d4f4970228a13042b0a93a539a8487f
+timeCreated: 1494335606
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: cangmen
+    100002: cangmen001
+    100004: CASD
+    100006: feiji waike
+    100008: feijiwaike
+    100010: Line009
+    100012: Object69
+    100014: //RootNode
+    100016: polySurf34
+    100018: polySurf35
+    100020: polySurf36
+    100022: polySurf38
+    100024: polySurf39
+    100026: polySurf40
+    100028: polySurf41
+    100030: polySurf42
+    100032: polySurf43
+    100034: polySurf44
+    100036: polySurf45
+    100038: polySurf46
+    100040: polySurf47
+    100042: polySurf48
+    100044: polySurf49
+    100046: polySurf50
+    100048: polySurf51
+    100050: polySurf52
+    100052: polySurf53
+    100054: polySurf54
+    100056: polySurf55
+    100058: polySurf56
+    100060: polySurf58
+    100062: polySurf59
+    100064: polySurf61
+    100066: polySurf62
+    100068: polySurf63
+    100070: polySurf64
+    100072: polySurf66
+    100074: polySurf67
+    100076: polySurf68
+    100078: polySurf69
+    100080: polySurf70
+    100082: polySurf79
+    100084: wheel
+    100086: "\u5916\u58F3"
+    100088: "\u5916\u89C2"
+    400000: cangmen
+    400002: cangmen001
+    400004: CASD
+    400006: feiji waike
+    400008: feijiwaike
+    400010: Line009
+    400012: Object69
+    400014: //RootNode
+    400016: polySurf34
+    400018: polySurf35
+    400020: polySurf36
+    400022: polySurf38
+    400024: polySurf39
+    400026: polySurf40
+    400028: polySurf41
+    400030: polySurf42
+    400032: polySurf43
+    400034: polySurf44
+    400036: polySurf45
+    400038: polySurf46
+    400040: polySurf47
+    400042: polySurf48
+    400044: polySurf49
+    400046: polySurf50
+    400048: polySurf51
+    400050: polySurf52
+    400052: polySurf53
+    400054: polySurf54
+    400056: polySurf55
+    400058: polySurf56
+    400060: polySurf58
+    400062: polySurf59
+    400064: polySurf61
+    400066: polySurf62
+    400068: polySurf63
+    400070: polySurf64
+    400072: polySurf66
+    400074: polySurf67
+    400076: polySurf68
+    400078: polySurf69
+    400080: polySurf70
+    400082: polySurf79
+    400084: wheel
+    400086: "\u5916\u58F3"
+    400088: "\u5916\u89C2"
+    2300000: cangmen
+    2300002: cangmen001
+    2300004: feiji waike
+    2300006: Line009
+    2300008: Object69
+    2300010: polySurf34
+    2300012: polySurf35
+    2300014: polySurf36
+    2300016: polySurf38
+    2300018: polySurf39
+    2300020: polySurf40
+    2300022: polySurf41
+    2300024: polySurf42
+    2300026: polySurf43
+    2300028: polySurf44
+    2300030: polySurf45
+    2300032: polySurf46
+    2300034: polySurf47
+    2300036: polySurf48
+    2300038: polySurf49
+    2300040: polySurf50
+    2300042: polySurf51
+    2300044: polySurf52
+    2300046: polySurf53
+    2300048: polySurf54
+    2300050: polySurf55
+    2300052: polySurf56
+    2300054: polySurf58
+    2300056: polySurf59
+    2300058: polySurf61
+    2300060: polySurf62
+    2300062: polySurf63
+    2300064: polySurf64
+    2300066: polySurf66
+    2300068: polySurf67
+    2300070: polySurf68
+    2300072: polySurf69
+    2300074: polySurf70
+    2300076: polySurf79
+    3300000: cangmen
+    3300002: cangmen001
+    3300004: feiji waike
+    3300006: Line009
+    3300008: Object69
+    3300010: polySurf34
+    3300012: polySurf35
+    3300014: polySurf36
+    3300016: polySurf38
+    3300018: polySurf39
+    3300020: polySurf40
+    3300022: polySurf41
+    3300024: polySurf42
+    3300026: polySurf43
+    3300028: polySurf44
+    3300030: polySurf45
+    3300032: polySurf46
+    3300034: polySurf47
+    3300036: polySurf48
+    3300038: polySurf49
+    3300040: polySurf50
+    3300042: polySurf51
+    3300044: polySurf52
+    3300046: polySurf53
+    3300048: polySurf54
+    3300050: polySurf55
+    3300052: polySurf56
+    3300054: polySurf58
+    3300056: polySurf59
+    3300058: polySurf61
+    3300060: polySurf62
+    3300062: polySurf63
+    3300064: polySurf64
+    3300066: polySurf66
+    3300068: polySurf67
+    3300070: polySurf68
+    3300072: polySurf69
+    3300074: polySurf70
+    3300076: polySurf79
+    4300000: Object69
+    4300002: Line009
+    4300004: polySurf51
+    4300006: polySurf56
+    4300008: polySurf54
+    4300010: polySurf55
+    4300012: polySurf52
+    4300014: polySurf53
+    4300016: polySurf35
+    4300018: polySurf40
+    4300020: polySurf38
+    4300022: polySurf41
+    4300024: polySurf34
+    4300026: polySurf44
+    4300028: polySurf45
+    4300030: polySurf49
+    4300032: polySurf43
+    4300034: polySurf39
+    4300036: polySurf46
+    4300038: polySurf42
+    4300040: polySurf36
+    4300042: polySurf48
+    4300044: polySurf47
+    4300046: polySurf50
+    4300048: polySurf69
+    4300050: polySurf66
+    4300052: polySurf62
+    4300054: polySurf61
+    4300056: polySurf68
+    4300058: polySurf67
+    4300060: polySurf64
+    4300062: polySurf79
+    4300064: polySurf70
+    4300066: polySurf63
+    4300068: polySurf58
+    4300070: polySurf59
+    4300072: feiji waike
+    4300074: cangmen
+    4300076: cangmen001
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
