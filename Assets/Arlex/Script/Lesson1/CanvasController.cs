@@ -11,6 +11,9 @@ public class CanvasController : MonoBehaviour {
 	private GameObject judgeData;
 	private GameObject conclusion;
 	private GameObject videoShow;
+	public MovieTexture[] movies;
+	public AudioClip[] clips;
+	private bool showmovie = true;
 	// Use this for initialization
 	private float timer = 0f;
 	// there are 2 level in this scenario
@@ -23,6 +26,8 @@ public class CanvasController : MonoBehaviour {
 		btnsName.Add ("Continue");
 		btnsName.Add ("Retrain");
 		btnsName.Add ("Back");
+		btnsName.Add ("Replay");
+		btnsName.Add ("Cancel");
 		foreach (string btnName in btnsName) {
 			GameObject btnobj = GameObject.Find (btnName);
 			Button btn = btnobj.GetComponent<Button> ();
@@ -36,28 +41,57 @@ public class CanvasController : MonoBehaviour {
 		conclusion = GameObject.Find ("Conclusion");
 		videoShow = GameObject.Find ("Video");
 		conclusion.SetActive (false);
-		videoShow.SetActive (false);
-		HideButton ();
+		judgeData.SetActive (false);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//manual test
-		/*
-		if (Input.GetKeyDown (KeyCode.A)) {
+
+	/*	if (Input.GetKeyDown (KeyCode.A)) {
 			CanvasShow ();
 		}
 		if (Input.GetKeyDown (KeyCode.B)) {
 			CanvasHide ();
 		}
 		if (Input.GetKeyDown (KeyCode.C)) {
-			level = 6;
+			level = 0;
 			CanvasHide ();
 		}*/
 	}
 
 
 	public void CanvasShow(){
+		if (showmovie) {// show video UI
+			switch (level) {
+			case 1:
+				GameObject.Find ("Title").GetComponent<Text> ().text = "应急门指示教学";
+				GameObject.Find ("VideoShow").GetComponent<RawImage> ().texture = movies [0];
+				GameObject.Find ("VideoShow").GetComponent<AudioSource> ().clip = clips [0];
+				break;
+			case 2:
+				GameObject.Find ("Title").GetComponent<Text> ().text = "氧气面罩使用教学";
+				GameObject.Find("VideoShow").GetComponent<RawImage>().texture = movies[1];
+				GameObject.Find ("VideoShow").GetComponent<AudioSource> ().clip = clips [1];
+				break;
+			}
+		} else {//show evaluate UI
+			videoShow.SetActive (false);
+			judgeData.SetActive (true);
+			switch (level) {
+			case 1:
+				GameObject.Find ("Title").GetComponent<Text> ().text = "展示应急通道";
+				controller.LoadPointer();	
+				break;
+			case 2:
+				ReSetCanvas ();
+				GameObject.Find ("Title").GetComponent<Text> ().text = "氧气面罩的使用方法P1";
+				controller.LoadHelmetP1();
+				break;
+			}
+			HideButton ();
+		}
 		timer = Time.deltaTime;
 		StartCoroutine ("Show");
 	}
@@ -66,24 +100,24 @@ public class CanvasController : MonoBehaviour {
 		timer = Time.deltaTime;
 		StartCoroutine ("Hide");
 	}
-		
+
+	public void VideoToEvaluate(){
+		timer = Time.deltaTime;
+		StartCoroutine ("HideVideo");
+	}
 
 	IEnumerator Show(){
-		switch (level) {
-		case 1:
-			GameObject.Find ("Title").GetComponent<Text> ().text = "展示应急通道";
-			controller.LoadPointer();	
-			break;
-		case 2:
-			ReSetCanvas ();
-			GameObject.Find ("Title").GetComponent<Text> ().text = "氧气面罩的使用方法P1";
-			controller.LoadHelmetP1();
-			break;
-		}
 		for (float t = timer; t < timer + 1; t += Time.deltaTime) {
 			float y =  Mathf.Lerp (25, 10, t-timer);
 			transform.position = new Vector3 (transform.position.x,y,transform.position.z);
 			yield return 0;
+		}
+
+		if (showmovie) {
+			MovieTexture ms = GameObject.Find ("VideoShow").GetComponent<RawImage> ().mainTexture as MovieTexture;
+			ms.loop = false;
+			ms.Play ();
+			GameObject.Find ("VideoShow").GetComponent<AudioSource> ().Play ();	
 		}
 	}
 
@@ -95,30 +129,41 @@ public class CanvasController : MonoBehaviour {
 		}
 
 	//	Debug.Log ("level is "+level);
-		if (level == -1) {
+		if (level == 1) {//test -1 product 1
 			GameObject.Find ("Score").GetComponent<Text>().text = "Socre";
 			HideButton ();
 			iTween.Resume ();
-		} else if(level == 1) {
+		} else if(level == 5) {//test 1 product 5
 			iTween.Stop ();
 			GameObject.Find ("Score").GetComponent<Text>().text = "Socre";
 			HideButton ();
 			judgeData.SetActive (false);
 			PrepareConclusion ();
-			CanvasShow ();
+			StartCoroutine ("Show");
 		} else if(level == 0) {//back to original
 			conclusion.SetActive(false);
-			judgeData.SetActive (true);
+			judgeData.SetActive (false);
+			videoShow.SetActive (true);
+			showmovie = true;
 			GameObject.Find ("Player").GetComponent<PlayerController>().StartTraning();
 		}
 		level++;
 	}
-		
+
+	IEnumerator HideVideo(){
+		for (float t = timer; t < timer + 1; t += Time.deltaTime) {
+			float y =  Mathf.Lerp (10, 25, t-timer);
+			transform.position = new Vector3 (transform.position.x,y,transform.position.z);
+			yield return 0;
+		}
+		CanvasShow ();
+	}
 
 	private void OnClick(GameObject sender){
 		switch(sender.name){
 		case "Continue":
 			if (level == 1) {
+				showmovie = true;
 				CanvasHide ();
 			} else if (level == 2) {
 				GameObject.Find ("Title").GetComponent<Text> ().text = "氧气面罩的使用方法P2";
@@ -154,6 +199,20 @@ public class CanvasController : MonoBehaviour {
 			break;
 		case "Back":
 			SceneManager.LoadScene ("Menu");
+			break;
+		case "Replay":
+			MovieTexture mr = GameObject.Find ("VideoShow").GetComponent<RawImage> ().mainTexture as MovieTexture;	
+			mr.Stop ();
+			GameObject.Find ("VideoShow").GetComponent<AudioSource> ().Stop();
+			mr.Play ();
+			GameObject.Find ("VideoShow").GetComponent<AudioSource> ().Play ();	
+			break;
+		case "Cancel":
+			MovieTexture mc = GameObject.Find ("VideoShow").GetComponent<RawImage> ().mainTexture as MovieTexture;
+			mc.Stop ();
+			GameObject.Find ("VideoShow").GetComponent<AudioSource> ().Stop();
+			showmovie = false;
+			VideoToEvaluate ();
 			break;
 		default:
 			Debug.Log("none");

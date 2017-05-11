@@ -853,7 +853,8 @@ namespace UnityEngine.EventSystems
 			if (!raycast.isValid)
 				return;
 			if (!isgazing) {
-				if (raycast.gameObject.name == "LessonOne" || raycast.gameObject.name == "Retry"||raycast.gameObject.name == "Continue"|| raycast.gameObject.name == "Retrain"||raycast.gameObject.name == "Back") {
+				if (raycast.gameObject.name == "LessonOne" || raycast.gameObject.name == "Retry"||raycast.gameObject.name == "Continue"|| raycast.gameObject.name == "Retrain"
+					||raycast.gameObject.name == "Back"|| raycast.gameObject.name == "Replay"||raycast.gameObject.name == "Cancel") {
 					lastraycaset = raycast.gameObject.name;
 					GameObject.Find ("Loading").GetComponent<PointerLoading> ().loading ();
 				}
