@@ -36,7 +36,8 @@ namespace UnityEngine.EventSystems
 
 		public bool isgazing = false;
 		public bool gazed = false;
-		public string lastraycaset;
+		private string lastraycaset;
+		public bool couldClick;
         [Header("Physics")]
         [Tooltip("Perform an sphere cast to determine correct depth for gaze pointer")]
         public bool performSphereCastForGazepointer;
@@ -621,7 +622,7 @@ namespace UnityEngine.EventSystems
                 // space position for the camera attached to this raycaster for compatability
                 leftData.position = ovrRaycaster.GetScreenPosition(raycast);
                 
-		//		Debug.Log ("overaycaster");
+//				Debug.Log ("overaycaster");
                 // Find the world position and normal the Graphic the ray intersected
                 RectTransform graphicRect = raycast.gameObject.GetComponent<RectTransform>();
                 if (graphicRect != null)
@@ -637,7 +638,7 @@ namespace UnityEngine.EventSystems
             OVRPhysicsRaycaster physicsRaycaster = raycast.module as OVRPhysicsRaycaster;
             if (physicsRaycaster)
             {
-		//		Debug.Log ("physics overaycaster");
+				Debug.Log ("physics overaycaster");
                 leftData.position = physicsRaycaster.GetScreenPos(raycast.worldPosition);
                 OVRGazePointer.instance.RequestShow();
                 OVRGazePointer.instance.SetPosition(raycast.worldPosition, raycast.worldNormal);
@@ -850,9 +851,11 @@ namespace UnityEngine.EventSystems
             }
             return scrollDelta;
         }
-
+			
 		protected void PointerChoosing(RaycastResult raycast){
 			if (!raycast.isValid)
+				return;
+			if (!couldClick)
 				return;
 			if (!isgazing) {
 				if (raycast.gameObject.name == "LessonOne" || raycast.gameObject.name == "Retry"||raycast.gameObject.name == "Continue"|| raycast.gameObject.name == "Retrain"

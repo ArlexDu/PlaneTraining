@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 public class CanvasController : MonoBehaviour {
 
 	private GestureController controller;
@@ -18,6 +19,7 @@ public class CanvasController : MonoBehaviour {
 	private float timer = 0f;
 	// there are 2 level in this scenario
 	private int level = 1;
+	private GameObject eventsystem;
 	void Start () {
 		controller = GestureController.Instance;
 		ReSetCanvas ();
@@ -103,6 +105,7 @@ public class CanvasController : MonoBehaviour {
 
 	public void CanvasHide(){
 		timer = Time.deltaTime;
+		GameObject.Find ("EventSystem").GetComponent<OVRInputModule> ().couldClick = false;
 		StartCoroutine ("Hide");
 	}
 
@@ -124,6 +127,7 @@ public class CanvasController : MonoBehaviour {
 			ms.Play ();
 			GameObject.Find ("VideoShow").GetComponent<AudioSource> ().Play ();	
 		}
+		GameObject.Find ("EventSystem").GetComponent<OVRInputModule> ().couldClick = true;
 	}
 
 	IEnumerator Hide(){
