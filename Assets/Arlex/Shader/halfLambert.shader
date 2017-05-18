@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
 
 Shader "Custom/halfLambert" {
 	Properties {
@@ -30,7 +32,7 @@ Shader "Custom/halfLambert" {
 
 			v2f vert(a2f v){
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP,v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.worldNormal = mul(v.normal,(float3x3)unity_WorldToObject);
 				o.uv = TRANSFORM_TEX(v.texcoord,_MainTex);
 				return o;

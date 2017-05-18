@@ -141,7 +141,7 @@ public class BodyOnCanvas : MonoBehaviour
 				targetJoint = body.Joints[_BoneMap[jt]];
 			}
 
-			Transform jointObj = bodyObject.transform.FindChild(jt.ToString());
+			Transform jointObj = bodyObject.transform.Find(jt.ToString());
 			jointObj.localPosition = GetVector3FromJoint(sourceJoint);
 
 			LineRenderer lr = jointObj.GetComponent<LineRenderer>();

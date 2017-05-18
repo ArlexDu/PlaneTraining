@@ -1,4 +1,6 @@
-﻿Shader "Custom/mask" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/mask" {
 properties{
 	_MaskTex("Mask",2D) = "white"{}
 	_MainTex("Main Texture",2D) = "white"{}
@@ -34,7 +36,7 @@ Blend SrcAlpha OneMinusSrcAlpha
 		ps_input vert (vs_input v)
 		{
 			ps_input o;
-			o.pos = mul (UNITY_MATRIX_MVP, v.pos);
+			o.pos = UnityObjectToClipPos (v.pos);
 			o.tex = v.tex;
 			return o;
 		}

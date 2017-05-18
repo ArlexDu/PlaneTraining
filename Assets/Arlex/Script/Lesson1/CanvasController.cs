@@ -26,11 +26,12 @@ public class CanvasController : MonoBehaviour {
 		List<string> btnsName = new List<string> ();
 		btnsName.Add ("Retry");
 		btnsName.Add ("Continue");
-		btnsName.Add ("Retrain");
+	//	btnsName.Add ("Retrain");
 		btnsName.Add ("Back");
 		btnsName.Add ("Replay");
 		btnsName.Add ("Cancel");
 		foreach (string btnName in btnsName) {
+		//	Debug.Log ("add "+ btnName);
 			GameObject btnobj = GameObject.Find (btnName);
 			Button btn = btnobj.GetComponent<Button> ();
 			btn.onClick.AddListener (delegate {
@@ -204,7 +205,8 @@ public class CanvasController : MonoBehaviour {
 			CanvasHide ();
 			break;
 		case "Back":
-			SceneManager.LoadScene ("Menu");
+			GameObject.Find ("EventSystem").GetComponent<OVRInputModule> ().couldClick = false;
+			GameObject.Find ("NetWork").GetComponent<NetWork> ().UpLoadLesosn1(Score_Door,Score_Helmet_P1,Score_Helmet_P2,Score_Helmet_P3,Score_Helmet_P4);
 			break;
 		case "Replay":
 			MovieTexture mr = GameObject.Find ("VideoShow").GetComponent<RawImage> ().mainTexture as MovieTexture;	
@@ -249,32 +251,32 @@ public class CanvasController : MonoBehaviour {
 	}
 
 
-	private float Score_Door;
-	private float Score_Helmet_P1;
-	private float Score_Helmet_P2;
-	private float Score_Helmet_P3;
-	private float Score_Helmet_P4;
+	private string Score_Door;
+	private string Score_Helmet_P1;
+	private string Score_Helmet_P2;
+	private string Score_Helmet_P3;
+	private string Score_Helmet_P4;
 
 	// show maxscore and save those score
 	public void JudgeFinish(float score){
 		ShowButton ();
 		float showScore = score * 100;
-		GameObject.Find ("Score").GetComponent<Text>().text = showScore.ToString("0.0");
+		GameObject.Find ("Score").GetComponent<Text>().text = showScore.ToString("0.00");
 		switch (level) {
 		case 1:
-			Score_Door = showScore;
+			Score_Door = showScore.ToString("0.00");
 			break;
 		case 2:
-			Score_Helmet_P1 = showScore;
+			Score_Helmet_P1 = showScore.ToString("0.00");
 			break;
 		case 3:
-			Score_Helmet_P2 = showScore;
+			Score_Helmet_P2 = showScore.ToString("0.00");
 			break;
 		case 4:
-			Score_Helmet_P3 = showScore;
+			Score_Helmet_P3 = showScore.ToString("0.00");
 			break;
 		case 5:
-			Score_Helmet_P4 = showScore;
+			Score_Helmet_P4 = showScore.ToString("0.00");
 			break;
 		}
 	}
@@ -283,11 +285,11 @@ public class CanvasController : MonoBehaviour {
 	private void PrepareConclusion(){
 		Debug.Log ("show conclusion");
 		conclusion.SetActive (true);
-		GameObject.Find ("DShowDoor").GetComponent<Text> ().text = Score_Door.ToString("0.0");
-		GameObject.Find ("DHelmetP1").GetComponent<Text> ().text = Score_Helmet_P1.ToString("0.0");
-		GameObject.Find ("DHelmetP2").GetComponent<Text> ().text = Score_Helmet_P2.ToString("0.0");
-		GameObject.Find ("DHelmetP3").GetComponent<Text> ().text = Score_Helmet_P3.ToString("0.0");
-		GameObject.Find ("DHelmetP4").GetComponent<Text> ().text = Score_Helmet_P4.ToString("0.0");
+		GameObject.Find ("DShowDoor").GetComponent<Text> ().text = Score_Door;
+		GameObject.Find ("DHelmetP1").GetComponent<Text> ().text = Score_Helmet_P1;
+		GameObject.Find ("DHelmetP2").GetComponent<Text> ().text = Score_Helmet_P2;
+		GameObject.Find ("DHelmetP3").GetComponent<Text> ().text = Score_Helmet_P3;
+		GameObject.Find ("DHelmetP4").GetComponent<Text> ().text = Score_Helmet_P4;
 	}
 		
 }
